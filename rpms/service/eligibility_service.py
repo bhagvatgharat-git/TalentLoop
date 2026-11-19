@@ -139,3 +139,4 @@ class EligibilityService:
             raise JobNotFoundError(f"Job opening with ID '{clean_job_id}' does not exist.")
 
         return self.evaluate(candidate, job)
+

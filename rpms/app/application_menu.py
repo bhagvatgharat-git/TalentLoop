@@ -216,3 +216,4 @@ class ApplicationMenu:
             print_table(APPLICATION_HEADERS, _format_application_rows(apps))
         except RPMSException as exc:
             print(f"Error: {exc}")
+

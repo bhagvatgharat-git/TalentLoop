@@ -143,3 +143,4 @@ class ApplicationService:
     def get_all_applications(self) -> List[Application]:
         """Fetch all applications."""
         return self.application_dao.get_all()
+

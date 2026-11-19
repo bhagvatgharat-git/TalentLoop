@@ -4,6 +4,7 @@ from rpms.model.application import Application
 from rpms.model.candidate import Candidate
 from rpms.model.company import Company
 from rpms.model.interview import Interview
+from rpms.model.interview_feedback import InterviewFeedback
 from rpms.model.job import Job
 from rpms.model.offer import Offer
 from rpms.model.placement import Placement
@@ -26,6 +27,7 @@ __all__ = [
     "Job",
     "Application",
     "Interview",
+    "InterviewFeedback",
     "Offer",
     "Placement",
     "STATUS_APPLIED",

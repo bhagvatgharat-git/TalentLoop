@@ -17,6 +17,10 @@ class Interview:
         interviewer: str,
         status: str = "SCHEDULED",
         created_at: Optional[datetime] = None,
+        candidate_name: Optional[str] = None,
+        company_name: Optional[str] = None,
+        job_title: Optional[str] = None,
+        feedback_result: Optional[str] = None,
     ):
         self.interview_id = interview_id
         self.application_id = application_id
@@ -26,10 +30,13 @@ class Interview:
         self.interviewer = interviewer
         self.status = status
         self.created_at = created_at
+        self.candidate_name = candidate_name
+        self.company_name = company_name
+        self.job_title = job_title
+        self.feedback_result = feedback_result
 
     def __str__(self) -> str:
         return (
             f"Interview({self.interview_id}, App: {self.application_id}, "
             f"Round: {self.round_no}, Mode: {self.mode}, Status: {self.status})"
         )
-

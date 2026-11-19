@@ -7,6 +7,7 @@ from rpms.model.application import Application
 from rpms.model.status import ALL_APPLICATION_STATUSES, ALLOWED_TRANSITIONS
 from rpms.service.application_service import ApplicationService
 from rpms.util.branding import APP_NAME
+from rpms.util.console_input import pause_for_user
 from rpms.util.table_printer import print_table
 
 APPLICATION_HEADERS = [
@@ -87,6 +88,7 @@ class ApplicationMenu:
 
         if not cand_id or not job_id:
             print("Both Candidate ID and Job ID are required.")
+            pause_for_user()
             return
 
         try:
@@ -96,6 +98,8 @@ class ApplicationMenu:
             print(f"Reason: {result.reason}")
         except RPMSException as exc:
             print(f"\nError: {exc}")
+        finally:
+            pause_for_user()
 
     def _handle_apply(self) -> None:
         print("\n--- Apply for Job ---")
@@ -104,6 +108,7 @@ class ApplicationMenu:
 
         if not cand_id or not job_id:
             print("Both Candidate ID and Job ID are required.")
+            pause_for_user()
             return
 
         try:
@@ -114,12 +119,15 @@ class ApplicationMenu:
             )
         except RPMSException as exc:
             print(f"\nApplication Failed: {exc}")
+        finally:
+            pause_for_user()
 
     def _handle_shortlist(self) -> None:
         print("\n--- Shortlist Application ---")
         app_id = input("Enter Application ID (e.g. APP501): ").strip().upper()
         if not app_id:
             print("Application ID is required.")
+            pause_for_user()
             return
 
         try:
@@ -127,12 +135,15 @@ class ApplicationMenu:
             print(f"\nSuccess: Application '{updated.application_id}' transitioned to SHORTLISTED.")
         except RPMSException as exc:
             print(f"\nError: {exc}")
+        finally:
+            pause_for_user()
 
     def _handle_update_status(self) -> None:
         print("\n--- Update Application Status ---")
         app_id = input("Enter Application ID (e.g. APP501): ").strip().upper()
         if not app_id:
             print("Application ID is required.")
+            pause_for_user()
             return
 
         try:
@@ -141,6 +152,7 @@ class ApplicationMenu:
             allowed = ALLOWED_TRANSITIONS.get(current.status, [])
             if not allowed:
                 print(f"Status '{current.status}' is terminal. No further transitions allowed.")
+                pause_for_user()
                 return
 
             print(f"Allowed next transitions: {', '.join(allowed)}")
@@ -150,17 +162,21 @@ class ApplicationMenu:
             print(f"\nSuccess: Application '{updated.application_id}' status updated to {updated.status}.")
         except RPMSException as exc:
             print(f"\nError: {exc}")
+        finally:
+            pause_for_user()
 
     def _handle_reject(self) -> None:
         print("\n--- Reject Application ---")
         app_id = input("Enter Application ID (e.g. APP501): ").strip().upper()
         if not app_id:
             print("Application ID is required.")
+            pause_for_user()
             return
 
         confirm = input(f"Are you sure you want to reject application '{app_id}'? (y/N): ").strip().lower()
         if confirm != "y":
             print("Action cancelled.")
+            pause_for_user()
             return
 
         try:
@@ -168,12 +184,15 @@ class ApplicationMenu:
             print(f"\nSuccess: Application '{updated.application_id}' has been marked as REJECTED.")
         except RPMSException as exc:
             print(f"\nError: {exc}")
+        finally:
+            pause_for_user()
 
     def _handle_view_by_job(self) -> None:
         print("\n--- View Applications by Job ---")
         job_id = input("Enter Job ID: ").strip().upper()
         if not job_id:
             print("Job ID is required.")
+            pause_for_user()
             return
 
         try:
@@ -181,12 +200,15 @@ class ApplicationMenu:
             print_table(APPLICATION_HEADERS, _format_application_rows(apps))
         except RPMSException as exc:
             print(f"Error: {exc}")
+        finally:
+            pause_for_user()
 
     def _handle_view_by_candidate(self) -> None:
         print("\n--- View Applications by Candidate ---")
         cand_id = input("Enter Candidate ID: ").strip().upper()
         if not cand_id:
             print("Candidate ID is required.")
+            pause_for_user()
             return
 
         try:
@@ -194,6 +216,8 @@ class ApplicationMenu:
             print_table(APPLICATION_HEADERS, _format_application_rows(apps))
         except RPMSException as exc:
             print(f"Error: {exc}")
+        finally:
+            pause_for_user()
 
     def _handle_view_by_status(self) -> None:
         print("\n--- View Applications by Status ---")
@@ -201,6 +225,7 @@ class ApplicationMenu:
         status = input("Enter Status to filter by: ").strip().upper()
         if not status:
             print("Status cannot be empty.")
+            pause_for_user()
             return
 
         try:
@@ -208,6 +233,8 @@ class ApplicationMenu:
             print_table(APPLICATION_HEADERS, _format_application_rows(apps))
         except RPMSException as exc:
             print(f"Error: {exc}")
+        finally:
+            pause_for_user()
 
     def _handle_view_all(self) -> None:
         print("\n--- View All Applications ---")
@@ -216,4 +243,5 @@ class ApplicationMenu:
             print_table(APPLICATION_HEADERS, _format_application_rows(apps))
         except RPMSException as exc:
             print(f"Error: {exc}")
-
+        finally:
+            pause_for_user()

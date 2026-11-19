@@ -9,7 +9,6 @@ from rpms.exception import (
     DuplicateApplicationError,
     InvalidStatusTransitionError,
     RPMSException,
-    ValidationError,
 )
 from rpms.model.application import Application
 from rpms.model.status import (

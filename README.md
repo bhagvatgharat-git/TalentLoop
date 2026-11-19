@@ -290,7 +290,7 @@ Evaluation halts at the first failed rule and reports the specific reason.
 ### Main Menu
 ```
 ==================================
-TALENTLOOP
+TalentLoop
 Recruitment & Placement System
 ==================================
 1. Candidates

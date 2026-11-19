@@ -1,11 +1,12 @@
 """Console submenu for company management."""
 
-from typing import Any, Callable, List, Optional
+from typing import Any, List, Optional
 
 from rpms.exception import RPMSException
 from rpms.model.company import Company
 from rpms.service.company_service import CompanyService
 from rpms.util.branding import APP_NAME
+from rpms.util.console_input import pause_for_user, prompt_validated_input
 from rpms.util.table_printer import print_table
 from rpms.util.validators import validate_email, validate_non_empty
 
@@ -31,29 +32,6 @@ def _format_company_rows(companies: List[Company]) -> List[List[Any]]:
         ]
         for c in companies
     ]
-
-
-def _prompt_validated_input(
-    prompt_text: str,
-    validator: Optional[Callable[[str], Any]] = None,
-    default: Optional[Any] = None,
-) -> Any:
-    """Prompt user until a valid input is provided or default accepted."""
-    while True:
-        suffix = f" [{default}]" if default is not None else ""
-        raw_val = input(f"{prompt_text}{suffix}: ").strip()
-        if not raw_val and default is not None:
-            return default
-        if not raw_val:
-            print("Error: Input cannot be empty. Please enter a value.")
-            continue
-        if validator:
-            try:
-                return validator(raw_val)
-            except Exception as exc:
-                print(f"Validation error: {exc}")
-                continue
-        return raw_val
 
 
 class CompanyMenu:
@@ -89,11 +67,11 @@ class CompanyMenu:
     def _handle_add(self) -> None:
         print("\n--- Add New Company ---")
         try:
-            name = _prompt_validated_input("Enter company name", lambda v: validate_non_empty(v, "Company name"))
-            industry = _prompt_validated_input("Enter industry sector", lambda v: validate_non_empty(v, "Industry"))
-            location = _prompt_validated_input("Enter company location/city", lambda v: validate_non_empty(v, "Location"))
-            contact_person = _prompt_validated_input("Enter contact person name", lambda v: validate_non_empty(v, "Contact person"))
-            contact_email = _prompt_validated_input("Enter contact email address", validate_email)
+            name = prompt_validated_input("Enter company name", lambda v: validate_non_empty(v, "Company name"))
+            industry = prompt_validated_input("Enter industry sector", lambda v: validate_non_empty(v, "Industry"))
+            location = prompt_validated_input("Enter company location/city", lambda v: validate_non_empty(v, "Location"))
+            contact_person = prompt_validated_input("Enter contact person name", lambda v: validate_non_empty(v, "Contact person"))
+            contact_email = prompt_validated_input("Enter contact email address", validate_email)
 
             saved = self.service.create_company(
                 name=name,
@@ -105,12 +83,15 @@ class CompanyMenu:
             print(f"\nSuccess: Company registered with ID: {saved.company_id}")
         except RPMSException as exc:
             print(f"\nError: {exc}")
+        finally:
+            pause_for_user()
 
     def _handle_update(self) -> None:
         print("\n--- Update Company ---")
         company_id = input("Enter Company ID to update: ").strip()
         if not company_id:
             print("Company ID is required.")
+            pause_for_user()
             return
 
         try:
@@ -118,11 +99,11 @@ class CompanyMenu:
             print(f"Editing Company: {existing.company_id} ({existing.name})")
             print("Press Enter to keep existing value.")
 
-            name = _prompt_validated_input("Company name", lambda v: validate_non_empty(v, "Company name"), default=existing.name)
-            industry = _prompt_validated_input("Industry sector", lambda v: validate_non_empty(v, "Industry"), default=existing.industry)
-            location = _prompt_validated_input("Location/city", lambda v: validate_non_empty(v, "Location"), default=existing.location)
-            contact_person = _prompt_validated_input("Contact person", lambda v: validate_non_empty(v, "Contact person"), default=existing.contact_person)
-            contact_email = _prompt_validated_input("Contact email", validate_email, default=existing.contact_email)
+            name = prompt_validated_input("Company name", lambda v: validate_non_empty(v, "Company name"), default=existing.name)
+            industry = prompt_validated_input("Industry sector", lambda v: validate_non_empty(v, "Industry"), default=existing.industry)
+            location = prompt_validated_input("Location/city", lambda v: validate_non_empty(v, "Location"), default=existing.location)
+            contact_person = prompt_validated_input("Contact person", lambda v: validate_non_empty(v, "Contact person"), default=existing.contact_person)
+            contact_email = prompt_validated_input("Contact email", validate_email, default=existing.contact_email)
 
             updated = self.service.update_company(
                 company_id=existing.company_id,
@@ -135,12 +116,15 @@ class CompanyMenu:
             print(f"\nSuccess: Company '{updated.company_id}' updated successfully.")
         except RPMSException as exc:
             print(f"\nError: {exc}")
+        finally:
+            pause_for_user()
 
     def _handle_search(self) -> None:
         print("\n--- Search Companies ---")
         keyword = input("Enter search term (name, industry, or location): ").strip()
         if not keyword:
             print("Search term cannot be empty.")
+            pause_for_user()
             return
 
         try:
@@ -148,6 +132,8 @@ class CompanyMenu:
             print_table(COMPANY_HEADERS, _format_company_rows(results))
         except RPMSException as exc:
             print(f"Error: {exc}")
+        finally:
+            pause_for_user()
 
     def _handle_view_all(self) -> None:
         print("\n--- View All Companies ---")
@@ -156,4 +142,5 @@ class CompanyMenu:
             print_table(COMPANY_HEADERS, _format_company_rows(companies))
         except RPMSException as exc:
             print(f"Error: {exc}")
-
+        finally:
+            pause_for_user()

@@ -2,7 +2,7 @@
 
 from datetime import date, datetime
 import re
-from typing import Any, Union
+from typing import Any
 
 from rpms.exception import ValidationError
 

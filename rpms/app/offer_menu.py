@@ -6,6 +6,7 @@ from rpms.exception import RPMSException
 from rpms.model.offer import Offer
 from rpms.service.offer_service import OfferService
 from rpms.util.branding import APP_NAME
+from rpms.util.console_input import pause_for_user
 from rpms.util.table_printer import print_table
 
 OFFER_HEADERS = [
@@ -74,6 +75,7 @@ class OfferMenu:
             app_id = input("Enter Application ID (status must be SELECTED): ").strip().upper()
             if not app_id:
                 print("Application ID is required.")
+                pause_for_user()
                 return
 
             designation = input("Enter Job Designation: ").strip()
@@ -96,12 +98,15 @@ class OfferMenu:
             print(f"\nOffer Creation Failed: {exc}")
         except ValueError:
             print("\nError: Invalid numeric or date format entered.")
+        finally:
+            pause_for_user()
 
     def _handle_update_status(self) -> None:
         print("\n--- Update Offer Status ---")
         offer_id = input("Enter Offer ID (e.g. OFF101): ").strip().upper()
         if not offer_id:
             print("Offer ID is required.")
+            pause_for_user()
             return
 
         print("Options: ACCEPTED, DECLINED")
@@ -114,12 +119,15 @@ class OfferMenu:
                 print("Application transitioned to REJECTED.")
         except RPMSException as exc:
             print(f"\nError: {exc}")
+        finally:
+            pause_for_user()
 
     def _handle_view_by_app(self) -> None:
         print("\n--- View Offer by Application ---")
         app_id = input("Enter Application ID: ").strip().upper()
         if not app_id:
             print("Application ID is required.")
+            pause_for_user()
             return
 
         try:
@@ -127,6 +135,8 @@ class OfferMenu:
             print_table(OFFER_HEADERS, _format_offer_rows([offer]))
         except RPMSException as exc:
             print(f"Error: {exc}")
+        finally:
+            pause_for_user()
 
     def _handle_view_all(self) -> None:
         print("\n--- View All Offers ---")
@@ -135,4 +145,5 @@ class OfferMenu:
             print_table(OFFER_HEADERS, _format_offer_rows(offers))
         except RPMSException as exc:
             print(f"Error: {exc}")
-
+        finally:
+            pause_for_user()

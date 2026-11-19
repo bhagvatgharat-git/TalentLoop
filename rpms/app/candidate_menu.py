@@ -1,11 +1,12 @@
 """Console submenu for candidate management."""
 
-from typing import Any, Callable, List, Optional
+from typing import Any, List, Optional
 
 from rpms.exception import RPMSException
 from rpms.model.candidate import Candidate
 from rpms.service.candidate_service import CandidateService
 from rpms.util.branding import APP_NAME
+from rpms.util.console_input import pause_for_user, prompt_validated_input
 from rpms.util.table_printer import print_table
 from rpms.util.validators import (
     validate_email,
@@ -46,29 +47,6 @@ def _format_candidate_rows(candidates: List[Candidate]) -> List[List[Any]]:
     ]
 
 
-def _prompt_validated_input(
-    prompt_text: str,
-    validator: Optional[Callable[[str], Any]] = None,
-    default: Optional[Any] = None,
-) -> Any:
-    """Prompt user until a valid input is provided or default accepted."""
-    while True:
-        suffix = f" [{default}]" if default is not None else ""
-        raw_val = input(f"{prompt_text}{suffix}: ").strip()
-        if not raw_val and default is not None:
-            return default
-        if not raw_val:
-            print("Error: Input cannot be empty. Please enter a value.")
-            continue
-        if validator:
-            try:
-                return validator(raw_val)
-            except Exception as exc:
-                print(f"Validation error: {exc}")
-                continue
-        return raw_val
-
-
 class CandidateMenu:
     """Console user interface for candidate operations."""
 
@@ -105,13 +83,13 @@ class CandidateMenu:
     def _handle_add(self) -> None:
         print("\n--- Add New Candidate ---")
         try:
-            name = _prompt_validated_input("Enter full name", lambda v: validate_non_empty(v, "Name"))
-            email = _prompt_validated_input("Enter email address", validate_email)
-            mobile = _prompt_validated_input("Enter 10-digit mobile number", validate_mobile)
-            technology = _prompt_validated_input("Enter primary technology", lambda v: validate_non_empty(v, "Technology"))
-            percentage = _prompt_validated_input("Enter percentage (0-100)", validate_percentage)
-            passing_year = _prompt_validated_input("Enter passing year", lambda v: validate_positive_int(v, "Passing year"))
-            backlogs = _prompt_validated_input("Enter active backlogs", lambda v: validate_non_negative_int(v, "Backlog count"), default=0)
+            name = prompt_validated_input("Enter full name", lambda v: validate_non_empty(v, "Name"))
+            email = prompt_validated_input("Enter email address", validate_email)
+            mobile = prompt_validated_input("Enter 10-digit mobile number", validate_mobile)
+            technology = prompt_validated_input("Enter primary technology", lambda v: validate_non_empty(v, "Technology"))
+            percentage = prompt_validated_input("Enter percentage (0-100)", validate_percentage)
+            passing_year = prompt_validated_input("Enter passing year", lambda v: validate_positive_int(v, "Passing year"))
+            backlogs = prompt_validated_input("Enter active backlogs", lambda v: validate_non_negative_int(v, "Backlog count"), default=0)
 
             saved = self.service.create_candidate(
                 name=name,
@@ -125,12 +103,15 @@ class CandidateMenu:
             print(f"\nSuccess: Candidate registered with ID: {saved.candidate_id}")
         except RPMSException as exc:
             print(f"\nError: {exc}")
+        finally:
+            pause_for_user()
 
     def _handle_update(self) -> None:
         print("\n--- Update Candidate ---")
         candidate_id = input("Enter Candidate ID to update: ").strip()
         if not candidate_id:
             print("Candidate ID is required.")
+            pause_for_user()
             return
 
         try:
@@ -138,14 +119,14 @@ class CandidateMenu:
             print(f"Editing Candidate: {existing.candidate_id} ({existing.name})")
             print("Press Enter to keep existing value.")
 
-            name = _prompt_validated_input("Full name", lambda v: validate_non_empty(v, "Name"), default=existing.name)
-            email = _prompt_validated_input("Email address", validate_email, default=existing.email)
-            mobile = _prompt_validated_input("Mobile number", validate_mobile, default=existing.mobile)
-            technology = _prompt_validated_input("Primary technology", lambda v: validate_non_empty(v, "Technology"), default=existing.technology)
-            percentage = _prompt_validated_input("Percentage (0-100)", validate_percentage, default=existing.percentage)
-            passing_year = _prompt_validated_input("Passing year", lambda v: validate_positive_int(v, "Passing year"), default=existing.passing_year)
-            backlogs = _prompt_validated_input("Active backlogs", lambda v: validate_non_negative_int(v, "Backlog count"), default=existing.backlog_count)
-            is_active = _prompt_validated_input("Is Active (1 for Yes, 0 for No)", lambda v: validate_non_negative_int(v, "Status"), default=existing.is_active)
+            name = prompt_validated_input("Full name", lambda v: validate_non_empty(v, "Name"), default=existing.name)
+            email = prompt_validated_input("Email address", validate_email, default=existing.email)
+            mobile = prompt_validated_input("Mobile number", validate_mobile, default=existing.mobile)
+            technology = prompt_validated_input("Primary technology", lambda v: validate_non_empty(v, "Technology"), default=existing.technology)
+            percentage = prompt_validated_input("Percentage (0-100)", validate_percentage, default=existing.percentage)
+            passing_year = prompt_validated_input("Passing year", lambda v: validate_positive_int(v, "Passing year"), default=existing.passing_year)
+            backlogs = prompt_validated_input("Active backlogs", lambda v: validate_non_negative_int(v, "Backlog count"), default=existing.backlog_count)
+            is_active = prompt_validated_input("Is Active (1 for Yes, 0 for No)", lambda v: validate_non_negative_int(v, "Status"), default=existing.is_active)
 
             updated = self.service.update_candidate(
                 candidate_id=existing.candidate_id,
@@ -161,12 +142,15 @@ class CandidateMenu:
             print(f"\nSuccess: Candidate '{updated.candidate_id}' updated successfully.")
         except RPMSException as exc:
             print(f"\nError: {exc}")
+        finally:
+            pause_for_user()
 
     def _handle_search(self) -> None:
         print("\n--- Search Candidates ---")
         keyword = input("Enter search term (name or technology): ").strip()
         if not keyword:
             print("Search term cannot be empty.")
+            pause_for_user()
             return
 
         try:
@@ -174,6 +158,8 @@ class CandidateMenu:
             print_table(CANDIDATE_HEADERS, _format_candidate_rows(results))
         except RPMSException as exc:
             print(f"Error: {exc}")
+        finally:
+            pause_for_user()
 
     def _handle_view_all(self) -> None:
         print("\n--- View All Candidates ---")
@@ -184,17 +170,21 @@ class CandidateMenu:
             print_table(CANDIDATE_HEADERS, _format_candidate_rows(candidates))
         except RPMSException as exc:
             print(f"Error: {exc}")
+        finally:
+            pause_for_user()
 
     def _handle_deactivate(self) -> None:
         print("\n--- Deactivate Candidate ---")
         candidate_id = input("Enter Candidate ID to deactivate: ").strip()
         if not candidate_id:
             print("Candidate ID cannot be empty.")
+            pause_for_user()
             return
 
         confirm = input(f"Are you sure you want to deactivate candidate '{candidate_id}'? (y/N): ").strip().lower()
         if confirm != "y":
             print("Deactivation cancelled.")
+            pause_for_user()
             return
 
         try:
@@ -202,4 +192,5 @@ class CandidateMenu:
             print(f"Success: Candidate '{candidate_id}' deactivated successfully.")
         except RPMSException as exc:
             print(f"Error: {exc}")
-
+        finally:
+            pause_for_user()

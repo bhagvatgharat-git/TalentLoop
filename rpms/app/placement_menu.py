@@ -6,6 +6,7 @@ from rpms.exception import RPMSException
 from rpms.model.placement import Placement
 from rpms.service.placement_service import PlacementService
 from rpms.util.branding import APP_NAME
+from rpms.util.console_input import pause_for_user
 from rpms.util.table_printer import print_table
 
 PLACEMENT_HEADERS = [
@@ -72,6 +73,7 @@ class PlacementMenu:
             app_id = input("Enter Application ID (must have ACCEPTED offer): ").strip().upper()
             if not app_id:
                 print("Application ID is required.")
+                pause_for_user()
                 return
 
             print("Press Enter on any field to accept values from the accepted offer.")
@@ -94,12 +96,15 @@ class PlacementMenu:
             print(f"\nPlacement Error: {exc}")
         except ValueError:
             print("\nError: Invalid numeric package entered.")
+        finally:
+            pause_for_user()
 
     def _handle_view_by_id(self) -> None:
         print("\n--- View Placement by ID ---")
         plc_id = input("Enter Placement ID (e.g. PLC101): ").strip().upper()
         if not plc_id:
             print("Placement ID is required.")
+            pause_for_user()
             return
 
         try:
@@ -107,12 +112,15 @@ class PlacementMenu:
             print_table(PLACEMENT_HEADERS, _format_placement_rows([placement]))
         except RPMSException as exc:
             print(f"Error: {exc}")
+        finally:
+            pause_for_user()
 
     def _handle_view_by_company(self) -> None:
         print("\n--- View Placements by Company ---")
         comp_id = input("Enter Company ID (e.g. COM101): ").strip().upper()
         if not comp_id:
             print("Company ID is required.")
+            pause_for_user()
             return
 
         try:
@@ -120,6 +128,8 @@ class PlacementMenu:
             print_table(PLACEMENT_HEADERS, _format_placement_rows(placements))
         except RPMSException as exc:
             print(f"Error: {exc}")
+        finally:
+            pause_for_user()
 
     def _handle_view_all(self) -> None:
         print("\n--- View All Placements ---")
@@ -128,4 +138,5 @@ class PlacementMenu:
             print_table(PLACEMENT_HEADERS, _format_placement_rows(placements))
         except RPMSException as exc:
             print(f"Error: {exc}")
-
+        finally:
+            pause_for_user()

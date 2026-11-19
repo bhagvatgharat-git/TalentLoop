@@ -6,6 +6,7 @@ from rpms.exception import RPMSException
 from rpms.model.interview import Interview
 from rpms.service.interview_service import InterviewService
 from rpms.util.branding import APP_NAME
+from rpms.util.console_input import pause_for_user
 from rpms.util.table_printer import print_table
 from rpms.util.validators import (
     validate_future_date,
@@ -43,7 +44,7 @@ def _format_interview_rows(interviews: List[Interview]) -> List[List[Any]]:
             i.status,
             i.feedback_result or "Pending",
         ]
-        for i in interviews
+        for c, i in enumerate(interviews)
     ]
 
 
@@ -86,6 +87,7 @@ class InterviewMenu:
             app_id = input("Enter Application ID (e.g. APP501): ").strip().upper()
             if not app_id:
                 print("Application ID is required.")
+                pause_for_user()
                 return
 
             date_str = input("Enter Interview Date (YYYY-MM-DD): ").strip()
@@ -111,12 +113,15 @@ class InterviewMenu:
             )
         except RPMSException as exc:
             print(f"\nScheduling Error: {exc}")
+        finally:
+            pause_for_user()
 
     def _handle_update_status(self) -> None:
         print("\n--- Update Interview Status ---")
         interview_id = input("Enter Interview ID (e.g. INT101): ").strip().upper()
         if not interview_id:
             print("Interview ID is required.")
+            pause_for_user()
             return
 
         print("Available statuses: SCHEDULED, COMPLETED, CANCELLED")
@@ -127,6 +132,8 @@ class InterviewMenu:
             print(f"\nSuccess: Interview '{updated.interview_id}' status updated to {updated.status}.")
         except RPMSException as exc:
             print(f"\nError: {exc}")
+        finally:
+            pause_for_user()
 
     def _handle_add_feedback(self) -> None:
         print("\n--- Add Interview Feedback ---")
@@ -134,6 +141,7 @@ class InterviewMenu:
             interview_id = input("Enter Interview ID (e.g. INT101): ").strip().upper()
             if not interview_id:
                 print("Interview ID is required.")
+                pause_for_user()
                 return
 
             tech_str = input("Enter Technical Rating (1-10): ").strip()
@@ -161,12 +169,15 @@ class InterviewMenu:
                 print("Application has been moved to SELECTED status.")
         except RPMSException as exc:
             print(f"\nFeedback Error: {exc}")
+        finally:
+            pause_for_user()
 
     def _handle_view_by_candidate(self) -> None:
         print("\n--- View Interviews by Candidate ---")
         cand_id = input("Enter Candidate ID (e.g. CAN1001): ").strip().upper()
         if not cand_id:
             print("Candidate ID is required.")
+            pause_for_user()
             return
 
         try:
@@ -174,12 +185,15 @@ class InterviewMenu:
             print_table(INTERVIEW_HEADERS, _format_interview_rows(interviews))
         except RPMSException as exc:
             print(f"Error: {exc}")
+        finally:
+            pause_for_user()
 
     def _handle_view_by_company(self) -> None:
         print("\n--- View Interviews by Company ---")
         comp_id = input("Enter Company ID (e.g. COM101): ").strip().upper()
         if not comp_id:
             print("Company ID is required.")
+            pause_for_user()
             return
 
         try:
@@ -187,4 +201,5 @@ class InterviewMenu:
             print_table(INTERVIEW_HEADERS, _format_interview_rows(interviews))
         except RPMSException as exc:
             print(f"Error: {exc}")
-
+        finally:
+            pause_for_user()

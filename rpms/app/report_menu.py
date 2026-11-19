@@ -5,6 +5,7 @@ from typing import Optional
 from rpms.exception import RPMSException
 from rpms.service.report_service import ReportService
 from rpms.util.branding import APP_NAME
+from rpms.util.console_input import pause_for_user
 from rpms.util.table_printer import print_table
 
 
@@ -55,6 +56,8 @@ class ReportMenu:
             print_table(headers, rows + [total_row] if rows else [])
         except RPMSException as exc:
             print(f"Error: {exc}")
+        finally:
+            pause_for_user()
 
     def _handle_open_jobs(self) -> None:
         print("\n--- Report: Open Jobs & Vacancies ---")
@@ -88,6 +91,8 @@ class ReportMenu:
             print_table(headers, rows + [total_row] if rows else [])
         except RPMSException as exc:
             print(f"Error: {exc}")
+        finally:
+            pause_for_user()
 
     def _handle_apps_by_status(self) -> None:
         print("\n--- Report: Applications by Workflow Status ---")
@@ -100,6 +105,8 @@ class ReportMenu:
             print_table(headers, rows + [total_row] if rows else [])
         except RPMSException as exc:
             print(f"Error: {exc}")
+        finally:
+            pause_for_user()
 
     def _handle_company_placements(self) -> None:
         print("\n--- Report: Company-wise Placement Performance ---")
@@ -140,6 +147,8 @@ class ReportMenu:
             print_table(headers, rows + [total_row] if rows else [])
         except RPMSException as exc:
             print(f"Error: {exc}")
+        finally:
+            pause_for_user()
 
     def _handle_placed_candidates(self) -> None:
         print("\n--- Report: Confirmed Placed Candidates ---")
@@ -182,6 +191,8 @@ class ReportMenu:
             print_table(headers, rows + [total_row] if rows else [])
         except RPMSException as exc:
             print(f"Error: {exc}")
+        finally:
+            pause_for_user()
 
     def _handle_unplaced_candidates(self) -> None:
         print("\n--- Report: Unplaced Active Candidates ---")
@@ -223,4 +234,5 @@ class ReportMenu:
             print_table(headers, rows + [total_row] if rows else [])
         except RPMSException as exc:
             print(f"Error: {exc}")
-
+        finally:
+            pause_for_user()

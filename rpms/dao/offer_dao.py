@@ -157,3 +157,4 @@ class OfferDAO:
                 cursor.close()
             if conn is not None:
                 conn.close()
+

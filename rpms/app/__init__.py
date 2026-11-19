@@ -7,6 +7,7 @@ from rpms.app.interview_menu import InterviewMenu
 from rpms.app.job_menu import JobMenu
 from rpms.app.offer_menu import OfferMenu
 from rpms.app.placement_menu import PlacementMenu
+from rpms.app.report_menu import ReportMenu
 
 __all__ = [
     "CandidateMenu",
@@ -16,4 +17,5 @@ __all__ = [
     "InterviewMenu",
     "OfferMenu",
     "PlacementMenu",
+    "ReportMenu",
 ]

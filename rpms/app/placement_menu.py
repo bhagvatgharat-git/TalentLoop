@@ -128,3 +128,4 @@ class PlacementMenu:
             print_table(PLACEMENT_HEADERS, _format_placement_rows(placements))
         except RPMSException as exc:
             print(f"Error: {exc}")
+

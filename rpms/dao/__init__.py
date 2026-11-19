@@ -7,6 +7,7 @@ from rpms.dao.interview_dao import InterviewDAO
 from rpms.dao.job_dao import JobDAO
 from rpms.dao.offer_dao import OfferDAO
 from rpms.dao.placement_dao import PlacementDAO
+from rpms.dao.report_dao import ReportDAO
 
 __all__ = [
     "CandidateDAO",
@@ -16,4 +17,5 @@ __all__ = [
     "InterviewDAO",
     "OfferDAO",
     "PlacementDAO",
+    "ReportDAO",
 ]

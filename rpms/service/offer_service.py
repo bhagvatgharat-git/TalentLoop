@@ -145,3 +145,4 @@ class OfferService:
     def get_all_offers(self) -> List[Offer]:
         """Fetch all issued job offers."""
         return self.offer_dao.get_all()
+

@@ -127,3 +127,4 @@ class PlacementService:
         """Fetch placements for a company."""
         clean_id = validate_non_empty(company_id, "Company ID").upper()
         return self.placement_dao.get_by_company(clean_id)
+

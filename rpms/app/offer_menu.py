@@ -135,3 +135,4 @@ class OfferMenu:
             print_table(OFFER_HEADERS, _format_offer_rows(offers))
         except RPMSException as exc:
             print(f"Error: {exc}")
+

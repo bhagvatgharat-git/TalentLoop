@@ -22,6 +22,7 @@ class Job:
         deadline: Optional[Union[date, str]] = None,
         status: str = "OPEN",
         created_at: Optional[datetime] = None,
+        company_name: Optional[str] = None,
     ):
         self.job_id = job_id
         self.company_id = company_id
@@ -36,10 +37,11 @@ class Job:
         self.deadline = deadline
         self.status = status
         self.created_at = created_at
+        self.company_name = company_name
 
     def __str__(self) -> str:
+        comp_display = f"{self.company_name} ({self.company_id})" if self.company_name else self.company_id
         return (
-            f"Job({self.job_id}, {self.job_title}, Company: {self.company_id}, "
+            f"Job({self.job_id}, {self.job_title}, Company: {comp_display}, "
             f"Tech: {self.technology}, Package: {self.package_lpa} LPA, Status: {self.status})"
         )
-

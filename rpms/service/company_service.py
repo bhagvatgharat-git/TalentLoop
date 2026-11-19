@@ -102,3 +102,4 @@ class CompanyService:
     def get_all_companies(self) -> List[Company]:
         """Retrieve list of all registered companies."""
         return self.company_dao.get_all()
+

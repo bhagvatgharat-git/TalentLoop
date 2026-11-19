@@ -158,3 +158,4 @@ class CompanyDAO:
                 cursor.close()
             if conn is not None:
                 conn.close()
+

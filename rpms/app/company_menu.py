@@ -156,3 +156,4 @@ class CompanyMenu:
             print_table(COMPANY_HEADERS, _format_company_rows(companies))
         except RPMSException as exc:
             print(f"Error: {exc}")
+

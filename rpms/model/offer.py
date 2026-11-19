@@ -32,3 +32,4 @@ class Offer:
             f"Offer({self.offer_id}, App: {self.application_id}, Role: {self.designation}, "
             f"Package: {self.package_lpa} LPA, Status: {self.offer_status})"
         )
+

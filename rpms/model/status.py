@@ -37,3 +37,4 @@ def is_valid_transition(current: str, new: str) -> bool:
     new_upper = new.strip().upper()
     allowed = ALLOWED_TRANSITIONS.get(curr_upper, [])
     return new_upper in allowed
+

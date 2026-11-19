@@ -37,3 +37,4 @@ class Candidate:
             f"Candidate({self.candidate_id}, {self.name}, {self.technology}, "
             f"{self.percentage}%, Year: {self.passing_year}, Status: {status_text})"
         )
+

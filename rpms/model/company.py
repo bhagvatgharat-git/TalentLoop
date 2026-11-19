@@ -27,3 +27,4 @@ class Company:
 
     def __str__(self) -> str:
         return f"Company({self.company_id}, {self.name}, {self.industry}, {self.location})"
+

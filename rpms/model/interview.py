@@ -32,3 +32,4 @@ class Interview:
             f"Interview({self.interview_id}, App: {self.application_id}, "
             f"Round: {self.round_no}, Mode: {self.mode}, Status: {self.status})"
         )
+

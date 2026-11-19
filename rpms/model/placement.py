@@ -32,3 +32,4 @@ class Placement:
             f"Placement({self.placement_id}, App: {self.application_id}, Company: {self.company_id}, "
             f"Role: {self.designation}, Package: {self.final_package_lpa} LPA, Status: {self.joining_status})"
         )
+

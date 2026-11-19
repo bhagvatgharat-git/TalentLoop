@@ -42,3 +42,4 @@ class Job:
             f"Job({self.job_id}, {self.job_title}, Company: {self.company_id}, "
             f"Tech: {self.technology}, Package: {self.package_lpa} LPA, Status: {self.status})"
         )
+

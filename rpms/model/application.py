@@ -28,3 +28,4 @@ class Application:
             f"Application({self.application_id}, Candidate: {self.candidate_id}, "
             f"Job: {self.job_id}, Status: {self.status}, Applied: {self.applied_date})"
         )
+

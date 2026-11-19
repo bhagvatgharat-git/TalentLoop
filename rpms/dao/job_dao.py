@@ -191,6 +191,27 @@ class JobDAO:
             if conn is not None:
                 conn.close()
 
+    def decrement_openings(self, job_id: str, connection: Optional[object] = None) -> int:
+        """Reduce job openings count by 1 and auto-close when reaching zero."""
+        owns_conn = connection is None
+        conn = get_connection() if owns_conn else connection
+        cursor = None
+        try:
+            cursor = conn.cursor()
+            cursor.execute("UPDATE jobs SET openings = openings - 1 WHERE job_id = %s", (job_id,))
+            cursor.execute("UPDATE jobs SET status = 'CLOSED' WHERE job_id = %s AND openings <= 0", (job_id,))
+            cursor.execute("SELECT openings FROM jobs WHERE job_id = %s", (job_id,))
+            row = cursor.fetchone()
+            remaining = int(row[0]) if row else 0
+            if owns_conn:
+                conn.commit()
+            return remaining
+        finally:
+            if cursor is not None:
+                cursor.close()
+            if owns_conn and conn is not None:
+                conn.close()
+
     def get_all(self) -> List[Job]:
         """Retrieve all jobs with company name joined."""
         conn = get_connection()

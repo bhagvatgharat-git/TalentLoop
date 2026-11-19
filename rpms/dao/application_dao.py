@@ -53,20 +53,22 @@ class ApplicationDAO:
             if conn is not None:
                 conn.close()
 
-    def update_status(self, application_id: str, new_status: str) -> bool:
+    def update_status(self, application_id: str, new_status: str, connection: Optional[object] = None) -> bool:
         """Update status of an existing application."""
-        conn = get_connection()
+        owns_conn = connection is None
+        conn = get_connection() if owns_conn else connection
         cursor = None
         try:
             cursor = conn.cursor()
             query = "UPDATE applications SET status = %s WHERE application_id = %s"
             cursor.execute(query, (new_status, application_id))
-            conn.commit()
+            if owns_conn:
+                conn.commit()
             return cursor.rowcount > 0
         finally:
             if cursor is not None:
                 cursor.close()
-            if conn is not None:
+            if owns_conn and conn is not None:
                 conn.close()
 
     def find_by_id(self, application_id: str) -> Optional[Application]:

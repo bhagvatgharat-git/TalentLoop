@@ -17,6 +17,9 @@ class Placement:
         actual_joining_date: Optional[Union[date, str]] = None,
         joining_status: str = "JOINED",
         created_at: Optional[datetime] = None,
+        candidate_name: Optional[str] = None,
+        company_name: Optional[str] = None,
+        job_title: Optional[str] = None,
     ):
         self.placement_id = placement_id
         self.application_id = application_id
@@ -26,10 +29,13 @@ class Placement:
         self.actual_joining_date = actual_joining_date
         self.joining_status = joining_status
         self.created_at = created_at
+        self.candidate_name = candidate_name
+        self.company_name = company_name
+        self.job_title = job_title
 
     def __str__(self) -> str:
         return (
-            f"Placement({self.placement_id}, App: {self.application_id}, Company: {self.company_id}, "
-            f"Role: {self.designation}, Package: {self.final_package_lpa} LPA, Status: {self.joining_status})"
+            f"Placement({self.placement_id}, Candidate: {self.candidate_name or self.application_id}, "
+            f"Company: {self.company_name or self.company_id}, Role: {self.designation}, "
+            f"Package: {self.final_package_lpa} LPA, Status: {self.joining_status})"
         )
-

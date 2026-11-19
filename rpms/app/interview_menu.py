@@ -187,3 +187,4 @@ class InterviewMenu:
             print_table(INTERVIEW_HEADERS, _format_interview_rows(interviews))
         except RPMSException as exc:
             print(f"Error: {exc}")
+

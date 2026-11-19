@@ -31,3 +31,4 @@ class InterviewFeedback:
             f"Tech: {self.technical_rating}/10, Comm: {self.communication_rating}/10, "
             f"Result: {self.result})"
         )
+

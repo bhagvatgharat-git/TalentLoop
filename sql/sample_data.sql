@@ -103,3 +103,4 @@ INSERT INTO offers (offer_id, application_id, designation, package_lpa, offer_da
 INSERT INTO placements (placement_id, application_id, company_id, designation, final_package_lpa, actual_joining_date, joining_status) VALUES
 ('PLC101', 'APP501', 'COM101', 'Associate Software Engineer - Java', 4.50, '2026-11-01', 'JOINED'),
 ('PLC102', 'APP508', 'COM103', 'Junior Frontend Developer', 5.50, '2026-11-10', 'JOINED');
+

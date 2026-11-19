@@ -163,3 +163,4 @@ CREATE TABLE placements (
 CREATE INDEX idx_candidates_technology ON candidates (technology);
 CREATE INDEX idx_jobs_status ON jobs (status);
 CREATE INDEX idx_applications_status ON applications (status);
+

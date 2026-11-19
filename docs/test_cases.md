@@ -50,3 +50,4 @@
 | TC-PLC-02 | Placements | Block placement when offer is not ACCEPTED | Offer status is OFFERED (pending response) | Raise ValidationError: requires accepted offer | ValidationError raised; placement blocked | PASS |
 | TC-PLC-03 | Placements | Block duplicate placement for same application | Second placement recorded for same application | Raise ValidationError: placement already exists | ValidationError raised; duplicate blocked | PASS |
 | TC-REP-01 | Reports | Unplaced candidates report criteria | Candidates with active status and no JOINED application | Returns only active students without a placement | Subquery accurately filters out placed students | PASS |
+

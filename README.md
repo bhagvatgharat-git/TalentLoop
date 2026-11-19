@@ -350,3 +350,4 @@ Total records: 7
 - **Notification Simulation**: Offers and interview invitations are recorded in the database and logged to `activity_log.txt`, but real-world email or SMS delivery is not integrated.
 - **Batch Resumes**: Resumes and documents are not stored on the filesystem; candidate profiles rely on structured fields and technology tags.
 - **Connection Pooling**: Currently, connections are created and closed per request/transaction. Under higher concurrency, a database connection pool would improve efficiency.
+

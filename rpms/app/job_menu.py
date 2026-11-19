@@ -217,3 +217,4 @@ class JobMenu:
             print_table(JOB_HEADERS, _format_job_rows(results))
         except RPMSException as exc:
             print(f"Error: {exc}")
+

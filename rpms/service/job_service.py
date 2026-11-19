@@ -179,3 +179,4 @@ class JobService:
     def get_all_jobs(self) -> List[Job]:
         """Retrieve all job postings."""
         return self.job_dao.get_all()
+

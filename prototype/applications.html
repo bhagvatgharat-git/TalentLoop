@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Applications - TalentLoop</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <span class="logo-talent">Talent</span><span class="logo-loop">Loop</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Dashboard</a></li>
+        <li><a href="candidates.html" class="nav-link">Candidates</a></li>
+        <li><a href="jobs.html" class="nav-link">Jobs</a></li>
+        <li><a href="applications.html" class="nav-link active">Applications</a></li>
+        <li><a href="reports.html" class="nav-link">Reports</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="container">
+    <header class="page-header">
+      <h1 class="page-title">Candidate Applications</h1>
+      <p class="tagline">Monitor hiring pipeline progress from initial screening to confirmed joining.</p>
+    </header>
+
+    <!-- Applications Table Card -->
+    <section class="section-card">
+      <div class="filter-bar">
+        <input type="text" class="search-input" placeholder="Search by candidate name or job title...">
+        <select class="filter-select">
+          <option value="">All Application Statuses</option>
+          <option value="APPLIED">Applied</option>
+          <option value="SHORTLISTED">Shortlisted</option>
+          <option value="INTERVIEW">Interview</option>
+          <option value="SELECTED">Selected</option>
+          <option value="OFFERED">Offered</option>
+          <option value="JOINED">Joined</option>
+          <option value="REJECTED">Rejected</option>
+        </select>
+        <button class="btn btn-primary" type="button">Apply Candidate</button>
+      </div>
+
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>App ID</th>
+              <th>Candidate Name</th>
+              <th>Company</th>
+              <th>Job Title</th>
+              <th>Applied Date</th>
+              <th>Current Stage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>APP501</td>
+              <td>Aarav Sharma</td>
+              <td>Tata Consultancy Services</td>
+              <td>Java Backend Developer</td>
+              <td>2026-10-01</td>
+              <td><span class="badge badge-joined">Joined</span></td>
+            </tr>
+            <tr>
+              <td>APP508</td>
+              <td>Ananya Iyer</td>
+              <td>Persistent Systems</td>
+              <td>Frontend React Engineer</td>
+              <td>2026-10-20</td>
+              <td><span class="badge badge-joined">Joined</span></td>
+            </tr>
+            <tr>
+              <td>APP502</td>
+              <td>Priya Patel</td>
+              <td>Tata Consultancy Services</td>
+              <td>Python Data Engineer</td>
+              <td>2026-10-05</td>
+              <td><span class="badge badge-offered">Offered</span></td>
+            </tr>
+            <tr>
+              <td>APP510</td>
+              <td>Pooja Nair</td>
+              <td>Wipro Technologies</td>
+              <td>QA Automation Engineer</td>
+              <td>2026-10-25</td>
+              <td><span class="badge badge-offered">Offered</span></td>
+            </tr>
+            <tr>
+              <td>APP503</td>
+              <td>Rohan Deshmukh</td>
+              <td>Infosys Limited</td>
+              <td>Systems Engineer - Java</td>
+              <td>2026-10-10</td>
+              <td><span class="badge badge-selected">Selected</span></td>
+            </tr>
+            <tr>
+              <td>APP504</td>
+              <td>Sneha Kulkarni</td>
+              <td>Infosys Limited</td>
+              <td>Full Stack React Developer</td>
+              <td>2026-10-12</td>
+              <td><span class="badge badge-interview">Interview</span></td>
+            </tr>
+            <tr>
+              <td>APP509</td>
+              <td>Siddharth Shinde</td>
+              <td>Tata Consultancy Services</td>
+              <td>Python Data Engineer</td>
+              <td>2026-10-22</td>
+              <td><span class="badge badge-interview">Interview</span></td>
+            </tr>
+            <tr>
+              <td>APP505</td>
+              <td>Aditya Verma</td>
+              <td>Persistent Systems</td>
+              <td>Associate Software Engineer</td>
+              <td>2026-10-15</td>
+              <td><span class="badge badge-shortlisted">Shortlisted</span></td>
+            </tr>
+            <tr>
+              <td>APP511</td>
+              <td>Rahul Mehta</td>
+              <td>Tata Consultancy Services</td>
+              <td>Java Backend Developer</td>
+              <td>2026-10-26</td>
+              <td><span class="badge badge-shortlisted">Shortlisted</span></td>
+            </tr>
+            <tr>
+              <td>APP506</td>
+              <td>Neha Joshi</td>
+              <td>Zensar Technologies</td>
+              <td>Junior Data Scientist</td>
+              <td>2026-10-18</td>
+              <td><span class="badge badge-applied">Applied</span></td>
+            </tr>
+            <tr>
+              <td>APP513</td>
+              <td>Amit Jadhav</td>
+              <td>Cognizant Technology Solutions</td>
+              <td>Cloud &amp; DevOps Associate</td>
+              <td>2026-10-15</td>
+              <td><span class="badge badge-applied">Applied</span></td>
+            </tr>
+            <tr>
+              <td>APP514</td>
+              <td>Divya Choudhary</td>
+              <td>Wipro Technologies</td>
+              <td>QA Automation Engineer</td>
+              <td>2026-10-29</td>
+              <td><span class="badge badge-applied">Applied</span></td>
+            </tr>
+            <tr>
+              <td>APP507</td>
+              <td>Vikram Malhotra</td>
+              <td>Tata Consultancy Services</td>
+              <td>Java Backend Developer</td>
+              <td>2026-10-02</td>
+              <td><span class="badge badge-rejected">Rejected</span></td>
+            </tr>
+            <tr>
+              <td>APP512</td>
+              <td>Tanvi Patil</td>
+              <td>Zensar Technologies</td>
+              <td>Junior Data Scientist</td>
+              <td>2026-10-28</td>
+              <td><span class="badge badge-rejected">Rejected</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    TalentLoop | Kiran Academy Internship Project
+  </footer>
+
+</body>
+</html>

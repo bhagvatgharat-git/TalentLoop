@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jobs - TalentLoop</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <span class="logo-talent">Talent</span><span class="logo-loop">Loop</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Dashboard</a></li>
+        <li><a href="candidates.html" class="nav-link">Candidates</a></li>
+        <li><a href="jobs.html" class="nav-link active">Jobs</a></li>
+        <li><a href="applications.html" class="nav-link">Applications</a></li>
+        <li><a href="reports.html" class="nav-link">Reports</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="container">
+    <header class="page-header">
+      <h1 class="page-title">Job Openings</h1>
+      <p class="tagline">Explore verified company vacancies, technology stacks, and eligibility requirements.</p>
+    </header>
+
+    <!-- Jobs Table Card -->
+    <section class="section-card">
+      <div class="filter-bar">
+        <input type="text" class="search-input" placeholder="Search by job title, company, or location...">
+        <select class="filter-select">
+          <option value="">All Locations</option>
+          <option value="Pune">Pune</option>
+          <option value="Bengaluru">Bengaluru</option>
+          <option value="Hyderabad">Hyderabad</option>
+          <option value="Chennai">Chennai</option>
+        </select>
+        <select class="filter-select">
+          <option value="">All Statuses</option>
+          <option value="OPEN">Open Only</option>
+          <option value="CLOSED">Closed</option>
+        </select>
+        <button class="btn btn-primary" type="button">Create Job</button>
+      </div>
+
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>Job ID</th>
+              <th>Company Name</th>
+              <th>Job Title</th>
+              <th>Technology</th>
+              <th>Openings</th>
+              <th>Location</th>
+              <th>Package (LPA)</th>
+              <th>Min %</th>
+              <th>Passing Year</th>
+              <th>Max Backlogs</th>
+              <th>Deadline</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>JOB101</td>
+              <td>Tata Consultancy Services</td>
+              <td>Java Backend Developer</td>
+              <td>Java</td>
+              <td>5</td>
+              <td>Pune</td>
+              <td>4.50</td>
+              <td>65.00%</td>
+              <td>2024</td>
+              <td>0</td>
+              <td>2026-12-31</td>
+              <td><span class="badge badge-selected">Open</span></td>
+            </tr>
+            <tr>
+              <td>JOB102</td>
+              <td>Tata Consultancy Services</td>
+              <td>Python Data Engineer</td>
+              <td>Python</td>
+              <td>3</td>
+              <td>Pune</td>
+              <td>5.20</td>
+              <td>70.00%</td>
+              <td>2024</td>
+              <td>0</td>
+              <td>2026-12-31</td>
+              <td><span class="badge badge-selected">Open</span></td>
+            </tr>
+            <tr>
+              <td>JOB103</td>
+              <td>Infosys Limited</td>
+              <td>Full Stack React Developer</td>
+              <td>React</td>
+              <td>4</td>
+              <td>Bengaluru</td>
+              <td>5.00</td>
+              <td>68.00%</td>
+              <td>2024</td>
+              <td>1</td>
+              <td>2026-12-15</td>
+              <td><span class="badge badge-selected">Open</span></td>
+            </tr>
+            <tr>
+              <td>JOB104</td>
+              <td>Infosys Limited</td>
+              <td>Systems Engineer - Java</td>
+              <td>Java</td>
+              <td>10</td>
+              <td>Pune</td>
+              <td>4.00</td>
+              <td>60.00%</td>
+              <td>2023</td>
+              <td>1</td>
+              <td>2026-12-20</td>
+              <td><span class="badge badge-selected">Open</span></td>
+            </tr>
+            <tr>
+              <td>JOB105</td>
+              <td>Persistent Systems</td>
+              <td>Associate Software Engineer</td>
+              <td>Python</td>
+              <td>4</td>
+              <td>Pune</td>
+              <td>6.00</td>
+              <td>75.00%</td>
+              <td>2024</td>
+              <td>0</td>
+              <td>2026-12-25</td>
+              <td><span class="badge badge-selected">Open</span></td>
+            </tr>
+            <tr>
+              <td>JOB106</td>
+              <td>Wipro Technologies</td>
+              <td>QA Automation Engineer</td>
+              <td>QA Testing</td>
+              <td>3</td>
+              <td>Hyderabad</td>
+              <td>4.20</td>
+              <td>65.00%</td>
+              <td>2023</td>
+              <td>0</td>
+              <td>2026-11-30</td>
+              <td><span class="badge badge-selected">Open</span></td>
+            </tr>
+            <tr>
+              <td>JOB107</td>
+              <td>Zensar Technologies</td>
+              <td>Junior Data Scientist</td>
+              <td>Data Science</td>
+              <td>2</td>
+              <td>Pune</td>
+              <td>6.50</td>
+              <td>75.00%</td>
+              <td>2024</td>
+              <td>0</td>
+              <td>2026-12-10</td>
+              <td><span class="badge badge-selected">Open</span></td>
+            </tr>
+            <tr>
+              <td>JOB109</td>
+              <td>Persistent Systems</td>
+              <td>Frontend React Engineer</td>
+              <td>React</td>
+              <td>3</td>
+              <td>Pune</td>
+              <td>5.50</td>
+              <td>70.00%</td>
+              <td>2024</td>
+              <td>0</td>
+              <td>2026-12-30</td>
+              <td><span class="badge badge-selected">Open</span></td>
+            </tr>
+            <tr>
+              <td>JOB108</td>
+              <td>Cognizant Technology Solutions</td>
+              <td>Cloud &amp; DevOps Associate</td>
+              <td>DevOps</td>
+              <td>2</td>
+              <td>Chennai</td>
+              <td>5.50</td>
+              <td>70.00%</td>
+              <td>2023</td>
+              <td>0</td>
+              <td>2026-11-15</td>
+              <td><span class="badge badge-rejected">Closed</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    TalentLoop | Kiran Academy Internship Project
+  </footer>
+
+</body>
+</html>

@@ -136,3 +136,4 @@ Once an issued offer is marked as `ACCEPTED`, the placement cell records a confi
 
 #### 8. Companies to Placements (One-to-Many: `1 : N`)
 Each finalized placement links directly to the employing company through `company_id`. While each placement represents one student hired by one specific company, a single hiring partner can employ multiple placed students across different recruitment drives. This allows company-level aggregation queries for hiring volume, average compensation, and package benchmarks.
+

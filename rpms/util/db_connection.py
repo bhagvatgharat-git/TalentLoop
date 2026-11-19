@@ -26,3 +26,4 @@ def get_connection():
         raise DatabaseConnectionError(
             f"Unexpected error while connecting to database '{DB_NAME}' on host '{DB_HOST}'."
         ) from exc
+

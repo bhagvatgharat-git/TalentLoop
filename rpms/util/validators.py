@@ -89,3 +89,4 @@ def validate_future_date(value: Any, field_name: str = "Date") -> date:
     if parsed_date < date.today():
         raise ValidationError(f"{field_name} must be today or a future date.")
     return parsed_date
+

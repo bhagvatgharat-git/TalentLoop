@@ -55,3 +55,4 @@ def generate_next_id(table_name: str, connection: Optional[object] = None) -> st
             cursor.close()
         if owns_connection and conn is not None:
             conn.close()
+

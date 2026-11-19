@@ -62,3 +62,4 @@ class InvalidStatusTransitionError(RPMSException):
 
     def __init__(self, message: str = "Invalid status transition requested."):
         super().__init__(message)
+

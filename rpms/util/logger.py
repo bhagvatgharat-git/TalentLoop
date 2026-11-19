@@ -14,3 +14,4 @@ def log_activity(message: str) -> None:
     log_entry = f"{timestamp} | {message.strip()}\n"
     with open(LOG_FILE_PATH, "a", encoding="utf-8") as file:
         file.write(log_entry)
+

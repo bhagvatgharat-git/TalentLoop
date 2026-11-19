@@ -189,3 +189,4 @@ class ReportDAO:
                 cursor.close()
             if conn is not None:
                 conn.close()
+

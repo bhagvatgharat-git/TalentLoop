@@ -36,3 +36,4 @@ class ReportService:
     def get_unplaced_candidates(self) -> List[Dict[str, Any]]:
         """Retrieve active candidates who have not yet secured a placement."""
         return self.report_dao.get_unplaced_candidates_report()
+

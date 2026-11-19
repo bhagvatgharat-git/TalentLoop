@@ -223,3 +223,4 @@ class ReportMenu:
             print_table(headers, rows + [total_row] if rows else [])
         except RPMSException as exc:
             print(f"Error: {exc}")
+

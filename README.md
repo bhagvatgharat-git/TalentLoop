@@ -78,7 +78,15 @@ Layer responsibilities:
 ```
 TalentLoop/
 ├── docs/
+│   ├── er_diagram.md
 │   └── test_cases.md
+├── prototype/
+│   ├── applications.html
+│   ├── candidates.html
+│   ├── index.html
+│   ├── jobs.html
+│   ├── reports.html
+│   └── style.css
 ├── rpms/
 │   ├── app/
 │   │   ├── __init__.py
@@ -130,6 +138,7 @@ TalentLoop/
 │   │   ├── __init__.py
 │   │   ├── branding.py
 │   │   ├── config.py
+│   │   ├── console_input.py
 │   │   ├── db_connection.py
 │   │   ├── id_generator.py
 │   │   ├── logger.py
@@ -145,6 +154,7 @@ TalentLoop/
 │   ├── test_eligibility_and_application.py
 │   └── test_offer_and_placement_service.py
 ├── .gitignore
+├── fix_mysql.bat
 ├── main.py
 ├── README.md
 └── requirements.txt
@@ -171,13 +181,15 @@ mysql -u root -p < sql/schema.sql
 mysql -u root -p < sql/sample_data.sql
 ```
 
-This creates the `talentloop_db` database and populates it with realistic Indian sample data (14 candidates, 6 companies, 9 job postings, and consistent application and interview records).
+This creates the `talentloop_db` database and populates it with realistic Indian sample data (34 candidates: CAN1001 to CAN1034, 6 companies, 9 job postings, and consistent application, interview, offer, and placement records).
+
+*Note for Windows users:* If the MySQL service fails to start due to service conflicts or file permission issues, right-click `fix_mysql.bat` in the project root and select **Run as administrator** to reset permissions and start `MySQL80`.
 
 ### 3. Environment Configuration
 The database parameters default to:
 - `DB_HOST`: `localhost`
 - `DB_USER`: `root`
-- `DB_PASSWORD`: (empty string)
+- `DB_PASSWORD`: `ROOT` (or set custom via environment variable)
 - `DB_NAME`: `talentloop_db`
 
 To override these, set environment variables in your terminal before running the application:
@@ -186,7 +198,7 @@ On Windows PowerShell:
 ```powershell
 $env:DB_HOST="localhost"
 $env:DB_USER="root"
-$env:DB_PASSWORD="your_password"
+$env:DB_PASSWORD="ROOT"
 $env:DB_NAME="talentloop_db"
 ```
 
@@ -215,6 +227,16 @@ Run all unit tests using Python's standard test runner:
 ```bash
 python -m unittest discover -s tests
 ```
+
+### 7. View the Web UI Prototype
+The static HTML/CSS mockup can be viewed directly in any modern browser:
+- Double-click `prototype/index.html` in your file explorer, or paste the file path in Chrome or Edge:
+  `file:///path/to/TalentLoop/prototype/index.html`
+- Or launch a local web server from the project directory:
+  ```bash
+  python -m http.server 8000
+  ```
+  Then visit `http://localhost:8000/prototype/` to navigate through Dashboard, Candidates, Jobs, Applications, and Reports.
 
 ## Modules
 
@@ -343,6 +365,20 @@ TOTAL      | 6 Companies                | 2          | 5.00              | 5.50
 -----------+----------------------------+------------+-------------------+----------------------
 Total records: 7
 ```
+
+## Student Deliverables Checklist
+
+Per the technical specification, this repository includes all required deliverables:
+1. **Python Source Code**: Complete layered codebase (`Main -> Service -> DAO -> MySQL Connector -> MySQL`) in `rpms/` and `main.py`.
+2. **MySQL Database & SQL Scripts**:
+   - `sql/schema.sql`: 8 InnoDB tables with foreign keys, constraints, and indexes.
+   - `sql/sample_data.sql`: Seed data covering 34 candidates, 6 companies, 9 jobs, 14 applications, interviews, feedback, offers, and placements.
+3. **Entity Relationship Diagram**: `docs/er_diagram.md` featuring Mermaid ER diagram, primary/foreign keys, cardinalities, and relationship descriptions.
+4. **HTML/CSS Prototype**: Multi-page responsive prototype in `prototype/` with Segoe UI typography and custom status badges.
+5. **Test Cases**:
+   - Automated: 25 unit tests in `tests/` executed via Python `unittest`.
+   - Documentation: `docs/test_cases.md` containing 37 formal test scenarios covering all modules.
+6. **Project Documentation**: `README.md` covering setup, architecture, workflow, and operations.
 
 ## Known Limitations and Future Improvements
 - **Console Input Only**: The project is intentionally built as a console application for simplicity and focus on data modeling and layered architecture. A web API or UI was excluded by design.

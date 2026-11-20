@@ -29,3 +29,4 @@ def prompt_validated_input(
 def pause_for_user(message: str = "Press Enter to continue...") -> None:
     """Pause console display until the user presses Enter."""
     input(f"\n{message}")
+

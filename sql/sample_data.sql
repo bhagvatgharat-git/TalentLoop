@@ -28,7 +28,27 @@ INSERT INTO candidates (candidate_id, name, email, mobile, technology, percentag
 ('CAN1011', 'Rahul Mehta', 'rahul.mehta@gmail.com', '9820011011', 'Java', 80.00, 2024, 0, 1),
 ('CAN1012', 'Tanvi Patil', 'tanvi.patil@gmail.com', '9820011012', 'Data Science', 83.40, 2024, 0, 1),
 ('CAN1013', 'Amit Jadhav', 'amit.jadhav@gmail.com', '9820011013', 'DevOps', 72.10, 2023, 0, 1),
-('CAN1014', 'Divya Choudhary', 'divya.choudhary@gmail.com', '9820011014', 'QA Testing', 69.50, 2024, 0, 1);
+('CAN1014', 'Divya Choudhary', 'divya.choudhary@gmail.com', '9820011014', 'QA Testing', 69.50, 2024, 0, 1),
+('CAN1015', 'Kunal Verma', 'kunal.verma@gmail.com', '9820011015', 'Python', 79.50, 2024, 0, 1),
+('CAN1016', 'Ritu Sen', 'ritu.sen@gmail.com', '9820011016', 'Java', 74.20, 2023, 1, 1),
+('CAN1017', 'Manish Gupta', 'manish.gupta@gmail.com', '9820011017', 'React', 81.00, 2024, 0, 1),
+('CAN1018', 'Shruti Thorat', 'shruti.thorat@gmail.com', '9820011018', 'Data Science', 86.40, 2024, 0, 1),
+('CAN1019', 'Abhishek Pandey', 'abhishek.pandey@gmail.com', '9820011019', 'DevOps', 70.80, 2023, 0, 1),
+('CAN1020', 'Kavita Waghmare', 'kavita.waghmare@gmail.com', '9820011020', 'QA Testing', 73.50, 2024, 0, 1),
+('CAN1021', 'Prateek Mishra', 'prateek.mishra@gmail.com', '9820011021', 'Java', 83.20, 2024, 0, 1),
+('CAN1022', 'Sayali Gaikwad', 'sayali.gaikwad@gmail.com', '9820011022', 'Python', 77.90, 2023, 0, 1),
+('CAN1023', 'Varun Bhatnagar', 'varun.bhatnagar@gmail.com', '9820011023', 'React', 67.50, 2023, 2, 1),
+('CAN1024', 'Megha Shrivastava', 'megha.s@gmail.com', '9820011024', 'Data Science', 89.10, 2024, 0, 1),
+('CAN1025', 'Darshan Solanki', 'darshan.solanki@gmail.com', '9820011025', 'Java', 75.60, 2024, 0, 1),
+('CAN1026', 'Ankita More', 'ankita.more@gmail.com', '9820011026', 'Python', 84.30, 2024, 0, 1),
+('CAN1027', 'Nikhil Sawant', 'nikhil.sawant@gmail.com', '9820011027', 'DevOps', 71.00, 2023, 1, 1),
+('CAN1028', 'Pallavi Rao', 'pallavi.rao@gmail.com', '9820011028', 'React', 78.40, 2024, 0, 1),
+('CAN1029', 'Gaurav Kadam', 'gaurav.kadam@gmail.com', '9820011029', 'QA Testing', 68.00, 2023, 0, 1),
+('CAN1030', 'Komal Bhalerao', 'komal.bhalerao@gmail.com', '9820011030', 'Java', 82.50, 2024, 0, 1),
+('CAN1031', 'Sanket Mahajan', 'sanket.mahajan@gmail.com', '9820011031', 'Python', 69.20, 2024, 1, 1),
+('CAN1032', 'Shweta Kamble', 'shweta.kamble@gmail.com', '9820011032', 'Data Science', 87.00, 2024, 0, 1),
+('CAN1033', 'Tejas Salunkhe', 'tejas.salunkhe@gmail.com', '9820011033', 'React', 76.80, 2023, 0, 1),
+('CAN1034', 'Isha Tambe', 'isha.tambe@gmail.com', '9820011034', 'DevOps', 80.40, 2024, 0, 1);
 
 -- 2. Companies
 INSERT INTO companies (company_id, name, industry, location, contact_person, contact_email) VALUES
